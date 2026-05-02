@@ -7,7 +7,7 @@ import { toast, Zoom } from "react-toastify";
 const Login = () => {
   const {
     signInUser,
-    userPasswordReset,
+    // userPasswordReset,
     signInWithGoogle,
     // signInWithGithub
   } = useContext(AuthContext);
@@ -79,43 +79,43 @@ const Login = () => {
   };
 
   //   Forgot Password
-  const handleForgotPassword = () => {
-    const email = emailRef.current.value;
-    if (!email) {
-      return setErrorMessage(`আপনার ই-মেইলটি দিন।`);
-    }
+//   const handleForgotPassword = () => {
+//     const email = emailRef.current.value;
+//     if (!email) {
+//       return setErrorMessage(`আপনার ই-মেইলটি দিন।`);
+//     }
 
-    setErrorMessage("");
-    // Send reset password email
-    userPasswordReset(email)
-      .then(() => {
-        toast(`পাসওয়ার্ড রিসেটের জন্য ই-মেইল পাঠানো হয়েছে!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
-        emailRef.current.value = "";
-      })
-      .catch((error) => {
-        toast.error(error.code, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
-      });
-  };
+//     setErrorMessage("");
+//     // Send reset password email
+//     userPasswordReset(email)
+//       .then(() => {
+//         toast(`পাসওয়ার্ড রিসেটের জন্য ই-মেইল পাঠানো হয়েছে!`, {
+//           position: "top-right",
+//           autoClose: 2000,
+//           hideProgressBar: false,
+//           closeOnClick: true,
+//           pauseOnHover: false,
+//           draggable: true,
+//           progress: undefined,
+//           theme: "light",
+//           transition: Zoom,
+//         });
+//         emailRef.current.value = "";
+//       })
+//       .catch((error) => {
+//         toast.error(error.code, {
+//           position: "top-right",
+//           autoClose: 2000,
+//           hideProgressBar: false,
+//           closeOnClick: true,
+//           pauseOnHover: false,
+//           draggable: true,
+//           progress: undefined,
+//           theme: "light",
+//           transition: Zoom,
+//         });
+//       });
+//   };
 
   //   Google Sign In
   const handleGoogleSignIn = () => {
@@ -213,7 +213,7 @@ const Login = () => {
         {/* Forgot Password */}
         <div className="mt-2">
           <Link
-            onClick={handleForgotPassword}
+            // onClick={handleForgotPassword}
             to=""
             className="link link-hover text-sm"
           >

@@ -15,6 +15,7 @@ const Registration = () => {
   } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [terms, setTerms] = useState(false);
   const navigate = useNavigate();
 
@@ -26,6 +27,7 @@ const Registration = () => {
     const email = e.target.email.value;
     const photoURL = e.target.photo.value;
     const password = e.target.password.value;
+    const confirmPassword = e.target.confirm_password.value;
     const terms = e.target.terms.checked;
 
     // Name without spacing
@@ -69,10 +71,14 @@ const Registration = () => {
       );
     }
 
+    // Confirm Password
+    if(password !== confirmPassword) {
+        return setErrorMessage("Please make sure both passwords match!");
+    }
+
     // Terms tick
     if (!terms) {
-      setErrorMessage("Accept Terms & Conditions!");
-      return;
+      return setErrorMessage("Accept Terms & Conditions!");
     }
 
     setErrorMessage("");
@@ -224,6 +230,23 @@ const Registration = () => {
             className="absolute top-4 right-3 text-base cursor-pointer"
           >
             {showPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
+          </span>
+        </div>
+        {/* Confirm Password */}
+        <label className="label font-semibold text-sm mt-3">Confirm Password</label>
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? "text" : "password"}
+            name="confirm_password"
+            className="input w-full bg-base-200 border-info outline-none md:py-6 focus:shadow-none"
+            placeholder="Confirm Your Password"
+            required
+          />
+          <span
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute top-4 right-3 text-base cursor-pointer"
+          >
+            {showConfirmPassword ? <FaEye></FaEye> : <FaEyeSlash></FaEyeSlash>}
           </span>
         </div>
         {/* T & C */}
