@@ -9,7 +9,7 @@ const Registration = () => {
     createUser,
     updateUserProfile,
     // emailVerification,
-    signOutUser,
+    // signOutUser,
     signInWithGoogle,
     // signInWithGithub,
   } = useContext(AuthContext);
@@ -102,11 +102,11 @@ const Registration = () => {
         // });
 
         // sign out user
-        signOutUser()
-          .then(() => {
-            navigate("/");
-          })
-          .catch();
+        // signOutUser()
+        //   .then(() => {
+        // })
+        // .catch();
+        navigate("/");
 
         e.target.reset();
       })
