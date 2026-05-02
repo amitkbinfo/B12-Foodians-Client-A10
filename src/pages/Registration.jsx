@@ -43,14 +43,30 @@ const Registration = () => {
     }
 
     // Password types
-    const passwordPattern =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
+    // for all
+    // const passwordPattern =
+    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
 
+    // uppercase + lowercase + minimum 6 characters
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{6,}$/;
     if (!passwordPattern.test(password)) {
-      setErrorMessage(
-        "Password should be 1 Uppercase, 1 lowercase, 1 digit, 1 special character and minimum 6 characters.",
+      //   setErrorMessage(
+      //     "Password should be 1 Uppercase, 1 lowercase, 1 digit, 1 special character and minimum 6 characters.",
+      //   );
+      return toast.error(
+        "Password must have at least 1 uppercase, 1 lowercase, and be 6+ characters long.",
+        {
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        },
       );
-      return;
     }
 
     // Terms tick
@@ -88,7 +104,7 @@ const Registration = () => {
         // sign out user
         signOutUser()
           .then(() => {
-            navigate("/login");
+            navigate("/");
           })
           .catch();
 
@@ -96,7 +112,7 @@ const Registration = () => {
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
-          toast.error("এই ই-মেইলটি আগে ব্যবহার করা হয়েছে!", {
+          return toast.error("এই ই-মেইলটি আগে ব্যবহার করা হয়েছে!", {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -107,7 +123,6 @@ const Registration = () => {
             theme: "light",
             transition: Zoom,
           });
-          return;
         }
       });
   };
@@ -118,17 +133,18 @@ const Registration = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        toast(`স্বাগতম - ${user.displayName}!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
+        console.log(user);
+        // toast(`স্বাগতম - ${user.displayName}!`, {
+        //   position: "top-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: false,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        //   transition: Zoom,
+        // });
         navigate("/");
       })
       .catch((error) => {
@@ -137,34 +153,31 @@ const Registration = () => {
   };
 
   // Github Sign In
-//   const handleGithubSignIn = () => {
-//     setErrorMessage("");
-//     signInWithGithub()
-//       .then((result) => {
-//         const user = result.user;
-//         toast(`স্বাগতম - ${user.displayName}!`, {
-//           position: "top-right",
-//           autoClose: 2000,
-//           hideProgressBar: false,
-//           closeOnClick: true,
-//           pauseOnHover: false,
-//           draggable: true,
-//           progress: undefined,
-//           theme: "light",
-//           transition: Zoom,
-//         });
-//         navigate("/");
-//       })
-//       .catch((error) => {
-//         setErrorMessage(error.code);
-//       });
-//   };
+  //   const handleGithubSignIn = () => {
+  //     setErrorMessage("");
+  //     signInWithGithub()
+  //       .then((result) => {
+  //         const user = result.user;
+  //         toast(`স্বাগতম - ${user.displayName}!`, {
+  //           position: "top-right",
+  //           autoClose: 2000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: false,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //           transition: Zoom,
+  //         });
+  //         navigate("/");
+  //       })
+  //       .catch((error) => {
+  //         setErrorMessage(error.code);
+  //       });
+  //   };
   return (
     <div className="bg-blue-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-20 min-h-[50vh]">
-      <form
-        onSubmit={handleRegistration}
-        className="fieldset "
-      >
+      <form onSubmit={handleRegistration} className="fieldset ">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Register Your Account
         </h1>

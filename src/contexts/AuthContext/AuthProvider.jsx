@@ -14,7 +14,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider(); 
 // const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {

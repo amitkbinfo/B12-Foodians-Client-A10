@@ -5,11 +5,12 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, Zoom } from "react-toastify";
 
 const Login = () => {
-  const { signInUser, userPasswordReset, signInWithGoogle, 
+  const {
+    signInUser,
+    userPasswordReset,
+    signInWithGoogle,
     // signInWithGithub
-
-   } =
-    useContext(AuthContext);
+  } = useContext(AuthContext);
   const [errorMessage, setErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,6 +28,7 @@ const Login = () => {
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
 
         // Email Verified
         // if (!user.emailVerified) {
@@ -44,23 +46,33 @@ const Login = () => {
         //   return;
         // }
 
-        toast(`স্বাগতম - ${user.displayName}!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
+        // toast(`স্বাগতম - ${user.displayName}!`, {
+        //   position: "top-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: false,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        //   transition: Zoom,
+        // });
         navigate(location?.state || "/");
       })
       .catch((error) => {
         if (error.code === "auth/invalid-credential") {
-          setErrorMessage("আপনার ই-মেইল/পাসওয়ার্ড ভুল।");
-          return;
+          //   setErrorMessage("আপনার ই-মেইল/পাসওয়ার্ড ভুল।");
+          return toast.error("আপনার ই-মেইল/পাসওয়ার্ড ভুল।", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Zoom,
+          });
         }
       });
     setErrorMessage("");
@@ -112,21 +124,32 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast(`স্বাগতম - ${user.displayName}!`, {
-          position: "top-right",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Zoom,
-        });
+        // toast(`স্বাগতম - ${user.displayName}!`, {
+        //   position: "top-right",
+        //   autoClose: 2000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: false,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        //   transition: Zoom,
+        // });
         navigate(location?.state || "/");
       })
       .catch((error) => {
-        setErrorMessage(error.code);
+        // setErrorMessage(error.code);
+        return toast.error(error.code, {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Zoom,
+          });
       });
   };
 
