@@ -53,6 +53,7 @@ const AuthProvider = ({ children }) => {
     );
   };
 
+  
   //   Google Login
   const signInWithGoogle = () => {
     setLoading(true);

@@ -239,7 +239,7 @@ const Login = () => {
       <p className="text-center mt-3">or</p>
       {/* Login with Social */}
       <div className="mt-3 flex flex-row items-center justify-center gap-3">
-        {/* Google */}
+        {/* Google Login */}
         <button
           onClick={handleGoogleSignIn}
           className="btn btn-sm md:btn-md w-fit bg-white text-black border-[#e5e5e5]"

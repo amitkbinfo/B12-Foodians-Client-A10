@@ -286,7 +286,7 @@ const Registration = () => {
       <p className="text-center">or</p>
       {/* Login with Social */}
       <div className="flex flex-row justify-center items-center gap-3 mt-3">
-        {/* Google */}
+        {/* Google Login */}
         <button
           onClick={handleGoogleSignIn}
           className="btn btn-sm md:btn-md w-fit bg-white text-black border-[#e5e5e5]"
