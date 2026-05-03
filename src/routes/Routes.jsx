@@ -9,12 +9,13 @@ import AddReview from "../pages/AddReview";
 import PrivateRoute from "./PrivateRoute";
 import MyReview from "../pages/MyReview";
 import UpdateReview from "../pages/UpdateReview";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout></RootLayout>,
-    errorElement: <p>Error</p>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         index: true,

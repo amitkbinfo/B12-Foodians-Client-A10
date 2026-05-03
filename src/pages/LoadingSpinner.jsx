@@ -5,7 +5,7 @@ const LoadingSpinner = () => {
   return (
     <div className="flex justify-center items-center py-10">
       <DotLottieReact
-        src="/SandyLoading.lottie"  // ✅ correct path
+        src="/SandyLoading.lottie"
         loop
         autoplay
         style={{ width: "100px", height: "100px" }}

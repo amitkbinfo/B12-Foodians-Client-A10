@@ -3,18 +3,25 @@ import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { Link } from "react-router";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import LoadingSpinner from "./LoadingSpinner";
 
 const MyReviews = () => {
   const { user } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!user?.email) {
       return;
     }
+    setLoading(true);
     fetch(`http://localhost:3000/my-reviews?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setReviews(data));
+      .then((data) => {
+        setReviews(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [user]);
 
   // Delete my reviews
@@ -57,10 +64,22 @@ const MyReviews = () => {
       <h2 className="text-2xl font-bold text-center mb-6">My Reviews 📝</h2>
 
       <div className="overflow-x-auto rounded-t-lg">
-        {reviews.length === 0 ? (
-          <p className="text-center text-gray-500 mt-10">
-            You haven’t added any reviews yet.
-          </p>
+        {loading ? (
+          <LoadingSpinner></LoadingSpinner>
+        ) : reviews.length === 0 ? (
+          <div>
+            <p className="text-center text-gray-500">
+              You haven’t added any reviews yet.
+            </p>
+            <div className="flex justify-center">
+              <Link
+                to={"/add-review"}
+                className="btn btn-sm btn-success shadow-none border-none text-black mt-5"
+              >
+                Add Review
+              </Link>
+            </div>
+          </div>
         ) : (
           <table className="table w-full">
             <thead className="bg-green-100">

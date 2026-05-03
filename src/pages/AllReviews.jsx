@@ -9,6 +9,7 @@ const AllReviews = () => {
 
   // for load all reviews
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:3000/reviews")
       .then((res) => res.json())
       .then((data) => {
