@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Registration from "../pages/Registration";
 import AllReviews from "../pages/AllReviews";
+import ReviewDetails from "../pages/ReviewDetails";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ export const router = createBrowserRouter([
       {
         path: "/all-reviews",
         element: <AllReviews></AllReviews>
+      },
+      {
+        path: "/review-details/:id",
+        loader: async ({params}) => fetch(`http://localhost:3000/reviews/${params.id}`),
+        element: <ReviewDetails></ReviewDetails>
       }
     ],
   },

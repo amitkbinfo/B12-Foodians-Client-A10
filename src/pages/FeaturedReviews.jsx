@@ -8,7 +8,7 @@ const FeaturedReviews = ({featuredReviews}) => {
     return (
         <div>
             <h1 className='text-center font-bold text-2xl'>Featured Reviews</h1>
-            <div className='grid grid-cols-2 md:grid-cols-3 gap-5 mt-10'>
+            <div className='grid grid-cols-2 md:grid-cols-3 gap-10 mt-10'>
                 {
                     reviews.map(review => <ReviewCard review={review} key={review._id}></ReviewCard>)
                 }

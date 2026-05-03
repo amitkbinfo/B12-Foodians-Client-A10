@@ -1,7 +1,9 @@
 import { Star } from "lucide-react";
+import { Link } from "react-router";
 
 const ReviewCard = ({ review }) => {
   const {
+    _id,
     food_image,
     food_name,
     restaurant_name,
@@ -18,7 +20,7 @@ const ReviewCard = ({ review }) => {
         <img
           src={food_image}
           alt={food_name}
-          className="w-full h-48 object-cover group-hover:scale-105 transition duration-300"
+          className="w-full h-80 object-cover group-hover:scale-105 transition duration-300"
         />
       </div>
 
@@ -53,9 +55,9 @@ const ReviewCard = ({ review }) => {
         </div>
 
         {/* Button */}
-        <button className="w-full mt-3 btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition">
+        <Link to={`/review-details/${_id}`} className="w-full mt-3 btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition">
           View Details
-        </button>
+        </Link>
       </div>
     </div>
   );
