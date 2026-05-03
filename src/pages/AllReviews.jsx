@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
+import LoadingSpinner from "./LoadingSpinner";
 
 
 const AllReviews = () => {
@@ -19,9 +20,7 @@ const AllReviews = () => {
 
   // for loading
   if (loading) {
-    return (
-      <div className="text-center py-20 text-gray-500">Loading reviews...</div>
-    );
+    return <LoadingSpinner></LoadingSpinner>
   }
 
   return (
