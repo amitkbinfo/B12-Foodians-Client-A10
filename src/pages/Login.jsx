@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, Zoom } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const {
@@ -79,43 +80,43 @@ const Login = () => {
   };
 
   //   Forgot Password
-//   const handleForgotPassword = () => {
-//     const email = emailRef.current.value;
-//     if (!email) {
-//       return setErrorMessage(`আপনার ই-মেইলটি দিন।`);
-//     }
+  //   const handleForgotPassword = () => {
+  //     const email = emailRef.current.value;
+  //     if (!email) {
+  //       return setErrorMessage(`আপনার ই-মেইলটি দিন।`);
+  //     }
 
-//     setErrorMessage("");
-//     // Send reset password email
-//     userPasswordReset(email)
-//       .then(() => {
-//         toast(`পাসওয়ার্ড রিসেটের জন্য ই-মেইল পাঠানো হয়েছে!`, {
-//           position: "top-right",
-//           autoClose: 2000,
-//           hideProgressBar: false,
-//           closeOnClick: true,
-//           pauseOnHover: false,
-//           draggable: true,
-//           progress: undefined,
-//           theme: "light",
-//           transition: Zoom,
-//         });
-//         emailRef.current.value = "";
-//       })
-//       .catch((error) => {
-//         toast.error(error.code, {
-//           position: "top-right",
-//           autoClose: 2000,
-//           hideProgressBar: false,
-//           closeOnClick: true,
-//           pauseOnHover: false,
-//           draggable: true,
-//           progress: undefined,
-//           theme: "light",
-//           transition: Zoom,
-//         });
-//       });
-//   };
+  //     setErrorMessage("");
+  //     // Send reset password email
+  //     userPasswordReset(email)
+  //       .then(() => {
+  //         toast(`পাসওয়ার্ড রিসেটের জন্য ই-মেইল পাঠানো হয়েছে!`, {
+  //           position: "top-right",
+  //           autoClose: 2000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: false,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //           transition: Zoom,
+  //         });
+  //         emailRef.current.value = "";
+  //       })
+  //       .catch((error) => {
+  //         toast.error(error.code, {
+  //           position: "top-right",
+  //           autoClose: 2000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: false,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //           transition: Zoom,
+  //         });
+  //       });
+  //   };
 
   //   Google Sign In
   const handleGoogleSignIn = () => {
@@ -140,16 +141,16 @@ const Login = () => {
       .catch((error) => {
         // setErrorMessage(error.code);
         return toast.error(error.code, {
-            position: "top-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-            transition: Zoom,
-          });
+          position: "top-right",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Zoom,
+        });
       });
   };
 
@@ -178,6 +179,9 @@ const Login = () => {
   //   };
   return (
     <div className="bg-green-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-12 min-h-[50vh]">
+      <Helmet>
+        <title>Login</title>
+      </Helmet>
       <form onSubmit={handleLogin} className="fieldset">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Login Your Account

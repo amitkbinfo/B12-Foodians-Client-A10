@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { toast, Zoom } from "react-toastify";
 import { useNavigate } from "react-router";
+import { Helmet } from "react-helmet-async";
 
 const AddReview = () => {
   const { user } = useContext(AuthContext);
@@ -54,13 +55,14 @@ const AddReview = () => {
 
   return (
     <div className="max-w-3xl mx-auto my-10 p-16 bg-green-50 rounded-2xl shadow">
-      
+      <Helmet>
+        <title>Add Review</title>
+      </Helmet>
       <h2 className="text-2xl font-bold text-center mb-6">
         Add Your Food Review 🍽️
       </h2>
 
       <form onSubmit={handleAddReview} className="space-y-4">
-
         {/* Food Name */}
         <input
           type="text"
@@ -119,8 +121,12 @@ const AddReview = () => {
 
         {/* User Info (readonly) */}
         <div className="bg-white p-3 rounded-lg border border-success text-sm">
-          <p><span className="font-semibold">Name:</span> {user?.displayName}</p>
-          <p><span className="font-semibold">Email:</span> {user?.email}</p>
+          <p>
+            <span className="font-semibold">Name:</span> {user?.displayName}
+          </p>
+          <p>
+            <span className="font-semibold">Email:</span> {user?.email}
+          </p>
         </div>
 
         {/* Submit Button */}
@@ -130,7 +136,6 @@ const AddReview = () => {
         >
           Submit Review
         </button>
-
       </form>
     </div>
   );

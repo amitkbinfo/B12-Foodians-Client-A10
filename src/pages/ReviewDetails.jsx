@@ -1,6 +1,7 @@
 import React from "react";
 import { useLoaderData } from "react-router";
 import { Star, MapPin } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const ReviewDetails = () => {
   const review = useLoaderData();
@@ -17,6 +18,9 @@ const ReviewDetails = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
+        <Helmet>
+        <title>{food_name}</title>
+      </Helmet>
       
       <div className="grid md:grid-cols-2 gap-10 items-center">
         

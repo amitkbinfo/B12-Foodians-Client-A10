@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast, Zoom } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const Registration = () => {
   const {
@@ -72,8 +73,8 @@ const Registration = () => {
     }
 
     // Confirm Password
-    if(password !== confirmPassword) {
-        return setErrorMessage("Please make sure both passwords match!");
+    if (password !== confirmPassword) {
+      return setErrorMessage("Please make sure both passwords match!");
     }
 
     // Terms tick
@@ -183,6 +184,9 @@ const Registration = () => {
   //   };
   return (
     <div className="bg-blue-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-12 min-h-[50vh]">
+      <Helmet>
+        <title>Registration</title>
+      </Helmet>
       <form onSubmit={handleRegistration} className="fieldset ">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Register Your Account
@@ -233,7 +237,9 @@ const Registration = () => {
           </span>
         </div>
         {/* Confirm Password */}
-        <label className="label font-semibold text-sm mt-3">Confirm Password</label>
+        <label className="label font-semibold text-sm mt-3">
+          Confirm Password
+        </label>
         <div className="relative">
           <input
             type={showConfirmPassword ? "text" : "password"}

@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { useLoaderData, useNavigate } from "react-router";
 import { toast, Zoom } from "react-toastify";
 
@@ -39,13 +40,14 @@ const UpdateReview = () => {
         });
         navigate("/my-reviews");
       })
-      .catch(() => {
-        
-      });
+      .catch(() => {});
   };
 
   return (
     <div className="max-w-6xl mx-auto my-10 px-4">
+      <Helmet>
+        <title>{review.food_name}</title>
+      </Helmet>
       {/* Card */}
       <div className="bg-green-50 shadow-lg rounded-2xl p-6 md:p-8">
         {/* Title */}
