@@ -28,7 +28,7 @@ const Registration = () => {
     const photoURL = e.target.photo.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirm_password.value;
-    const terms = e.target.terms.checked;
+    const isChecked = e.target.terms.checked;
 
     // Name without spacing
     const cleanName = displayName.trim().replace(/\s+/g, " ");
@@ -77,7 +77,7 @@ const Registration = () => {
     }
 
     // Terms tick
-    if (!terms) {
+    if (!isChecked) {
       return setErrorMessage("Accept Terms & Conditions!");
     }
 
@@ -182,7 +182,7 @@ const Registration = () => {
   //       });
   //   };
   return (
-    <div className="bg-blue-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-20 min-h-[50vh]">
+    <div className="bg-blue-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-12 min-h-[50vh]">
       <form onSubmit={handleRegistration} className="fieldset ">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Register Your Account

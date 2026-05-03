@@ -47,6 +47,7 @@ const Navbar = () => {
     <>
       <MyLink to={"/"}>Home</MyLink>
       <MyLink to={"/all-reviews"}>All Reviews</MyLink>
+      <MyLink to={"/add-review"}>Add Review</MyLink>
     </>
   );
   return (

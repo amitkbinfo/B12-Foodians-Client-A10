@@ -177,7 +177,7 @@ const Login = () => {
   //       });
   //   };
   return (
-    <div className="bg-green-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-20 min-h-[50vh]">
+    <div className="bg-green-100 mx-auto rounded-box md:w-2xl px-20 py-10 my-12 min-h-[50vh]">
       <form onSubmit={handleLogin} className="fieldset">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Login Your Account
