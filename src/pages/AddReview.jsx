@@ -21,7 +21,7 @@ const AddReview = () => {
       review: form.review.value,
       reviewer_name: user?.displayName,
       user_email: user?.email,
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(),
     };
 
     // post for sending data to the MongoDB
