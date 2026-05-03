@@ -47,8 +47,10 @@ const Navbar = () => {
     <>
       <MyLink to={"/"}>Home</MyLink>
       <MyLink to={"/all-reviews"}>All Reviews</MyLink>
+      {user  && 
+      <>
       <MyLink to={"/add-review"}>Add Review</MyLink>
-      <MyLink to={"/my-reviews"}>My Reviews</MyLink>
+      <MyLink to={"/my-reviews"}>My Reviews</MyLink></>}
     </>
   );
   return (
@@ -146,7 +148,6 @@ const Navbar = () => {
                   <li>
                     <Link to={"/my-reviews"}>My Reviews</Link>
                   </li>
-
                   <input
                   //    onChange={(e)=> handleTheme(e.target.checked)}
                   //    type="checkbox"
