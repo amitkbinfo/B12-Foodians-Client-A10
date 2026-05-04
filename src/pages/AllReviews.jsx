@@ -35,6 +35,19 @@ const AllReviews = () => {
     return <LoadingSpinner></LoadingSpinner>;
   }
 
+  //   Implement Search
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchByName = e.target.search.value;
+    setLoading(true);
+    fetch(`http://localhost:3000/search?search=${searchByName}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setReviews(data);
+        setLoading(false);
+      });
+  };
   return (
     <div className="mx-5">
       <Helmet>
@@ -44,7 +57,37 @@ const AllReviews = () => {
         All Food Reviews 🍽️
       </h2>
 
-      {
+      {/* Search by Name */}
+      <form onSubmit={handleSearch} className="flex justify-center mb-5">
+        <label className="input border-green-600 outline-none rounded-l-2xl rounded-r-none">
+          <svg
+            className="h-[1em] opacity-50"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <g
+              strokeLinejoin="round"
+              strokeLinecap="round"
+              strokeWidth="2.5"
+              fill="none"
+              stroke="currentColor"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </g>
+          </svg>
+          <input type="search" name="search" placeholder="Search" />
+        </label>
+        <button className="btn btn-success border-none shadow-none text-black rounded-r-2xl rounded-l-none">
+          Search
+        </button>
+      </form>
+
+      {reviews.length === 0 ? (
+        <h2 className="text-xl text-center mt-20 font-semibold text-gray-600">
+          No results found 😔
+        </h2>
+      ) : (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {reviews.map((review) => (
             <ReviewCard
@@ -54,7 +97,7 @@ const AllReviews = () => {
             ></ReviewCard>
           ))}
         </div>
-      }
+      )}
     </div>
   );
 };
