@@ -57,7 +57,7 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10">
+    <div className="max-w-6xl mx-auto md:px-5 py-10">
       <Helmet>
         <title>My Reviews</title>
       </Helmet>

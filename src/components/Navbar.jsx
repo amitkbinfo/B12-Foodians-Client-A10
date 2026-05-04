@@ -11,6 +11,17 @@ import { IoLogOut } from "react-icons/io5";
 const Navbar = () => {
   const { user, loading, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
+//   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+// // Themes apply
+//   useEffect(() => {
+//     const html = document.querySelector("html");
+//     html.setAttribute("data-theme", theme);
+//     localStorage.setItem("theme", theme);
+//   }, [theme]);
+
+//   const handleTheme = (checked) => {
+//     setTheme(checked ? "dark" : "light");
+//   };
 
   const handleLogout = () => {
     signOutUser()
@@ -47,10 +58,12 @@ const Navbar = () => {
     <>
       <MyLink to={"/"}>Home</MyLink>
       <MyLink to={"/all-reviews"}>All Reviews</MyLink>
-      {user  && 
-      <>
-      <MyLink to={"/add-review"}>Add Review</MyLink>
-      <MyLink to={"/my-reviews"}>My Reviews</MyLink></>}
+      {user && (
+        <>
+          <MyLink to={"/add-review"}>Add Review</MyLink>
+          <MyLink to={"/my-reviews"}>My Reviews</MyLink>
+        </>
+      )}
     </>
   );
   return (
@@ -115,64 +128,84 @@ const Navbar = () => {
             )} */}
 
             {user ? (
-              <div className="dropdown dropdown-end z-50">
-                <div
-                  tabIndex={0}
-                  role="button"
-                  className="btn btn-ghost btn-circle avatar"
-                >
-                  <div className="w-9 border-2 border-gray-300 rounded-full">
-                    <img
-                      alt="Tailwind CSS Navbar component"
-                      referrerPolicy="no-referrer"
-                      //   src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
-                      src=""
-                    />
-                  </div>
-                </div>
-                <ul
-                  tabIndex="-1"
-                  className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
-                >
-                  <div className=" pb-3 border-b border-b-gray-200">
-                    {/* <li className="text-sm font-bold">{user.displayName}</li>
-                <li className="text-xs">{user.email}</li> */}
-                    <li className="text-sm font-bold">{user?.displayName}</li>
-                    <li className="text-xs">{user?.email}</li>
-                  </div>
-
-                  <li className="mt-3">
-                    <Link to={"/add-review"}>Add Review</Link>
-                  </li>
-
-                  <li>
-                    <Link to={"/my-reviews"}>My Reviews</Link>
-                    <Link to={"/my-favorites"}>My Favorites</Link>
-                  </li>
+              <div className="flex items-center justify-center">
+                {/* <div className="navbar">
                   <input
-                  //    onChange={(e)=> handleTheme(e.target.checked)}
-                  //    type="checkbox"
-                  //    defaultChecked={localStorage.getItem('theme') === "dark"}
-                  //    className="toggle"
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
                   />
-                  <li>
-                    <button
-                      onClick={handleLogout}
-                      className="btn btn-xs btn-neutral"
-                    >
-                      <IoLogOut />
-                      Logout
-                    </button>
-                  </li>
-                </ul>
+                </div> */}
+                <div className="dropdown dropdown-end z-50">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-9 border-2 border-gray-300 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        referrerPolicy="no-referrer"
+                        //   src={user?.photoURL || "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}
+                        src=""
+                      />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex="-1"
+                    className="menu  menu-sm dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+                  >
+                    <div className=" pb-3 border-b border-b-gray-200">
+                      {/* <li className="text-sm font-bold">{user.displayName}</li>
+                <li className="text-xs">{user.email}</li> */}
+                      <li className="text-sm font-bold">{user?.displayName}</li>
+                      <li className="text-xs">{user?.email}</li>
+                    </div>
+
+                    <li className="mt-3">
+                      <Link to={"/add-review"}>Add Review</Link>
+                    </li>
+
+                    <li>
+                      <Link to={"/my-reviews"}>My Reviews</Link>
+                      <Link to={"/my-favorites"}>My Favorites</Link>
+                    </li>
+                    <input
+                    //    onChange={(e)=> handleTheme(e.target.checked)}
+                    //    type="checkbox"
+                    //    defaultChecked={localStorage.getItem('theme') === "dark"}
+                    //    className="toggle"
+                    />
+                    <li>
+                      <button
+                        onClick={handleLogout}
+                        className="btn btn-xs btn-neutral"
+                      >
+                        <IoLogOut />
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </div>
             ) : (
-              <Link
-                to="/login"
-                className="btn btn-sm btn-neutral border-none shadow-none hover:btn-success hover:shadow-none hover:text-black"
-              >
-                Login
-              </Link>
+              <div className="flex items-center justify-center">
+                {/* <div className="navbar">
+                  <input
+                    onChange={(e) => handleTheme(e.target.checked)}
+                    type="checkbox"
+                    defaultChecked={localStorage.getItem("theme") === "dark"}
+                    className="toggle"
+                  />
+                </div> */}
+                <Link
+                  to="/login"
+                  className="btn btn-sm btn-neutral border-none shadow-none hover:btn-success hover:shadow-none hover:text-black"
+                >
+                  Login
+                </Link>
+              </div>
             )}
           </div>
         )}

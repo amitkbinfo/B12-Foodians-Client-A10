@@ -54,7 +54,7 @@ const AddReview = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto my-10 p-16 bg-green-50 rounded-2xl shadow">
+    <div className="max-w-3xl mx-auto my-10 p-10 md:p-16 bg-green-50 rounded-2xl shadow">
       <Helmet>
         <title>Add Review</title>
       </Helmet>

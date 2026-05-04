@@ -22,17 +22,7 @@ const ReviewCard = ({ review, favorites }) => {
 
   const handleFavorite = () => {
     if (!user?.email) {
-      return toast.error("Please login first!", {
-        position: "top-right",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Zoom,
-      });
+      return;
     }
 
     // Favorite card data
@@ -84,7 +74,7 @@ const ReviewCard = ({ review, favorites }) => {
       });
   };
 
-  //   //   for favorite persist
+  //  for favorite persist
   useEffect(() => {
     if (!favorites.length) {
       return;
@@ -96,7 +86,8 @@ const ReviewCard = ({ review, favorites }) => {
     }
   }, [favorites, _id]);
   return (
-    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group">
+    <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group flex flex-col h-full">
+      {" "}
       {/* Image */}
       <div className="overflow-hidden">
         <img
@@ -105,12 +96,11 @@ const ReviewCard = ({ review, favorites }) => {
           className="w-full h-50 md:h-80 object-cover group-hover:scale-105 transition duration-300"
         />
       </div>
-
       {/* Content */}
-      <div className="p-4 space-y-2">
+      <div className="p-4 space-y-2 flex flex-col grow">
+        {" "}
         {/* Food Name */}
         <h2 className="text-lg font-semibold text-gray-800">{food_name}</h2>
-
         {/* Restaurant and Favorite*/}
         <div className="flex items-center justify-between">
           <p className="text-sm text-gray-600">Restaurant: {restaurant_name}</p>
@@ -123,10 +113,8 @@ const ReviewCard = ({ review, favorites }) => {
             )}
           </button>
         </div>
-
         {/* Location */}
         <p className="text-xs text-gray-400">📍 {restaurant_location}</p>
-
         {/* Reviewer + Rating */}
         <div className="flex items-center justify-between pt-2">
           <p className="text-sm text-gray-700">
@@ -138,11 +126,10 @@ const ReviewCard = ({ review, favorites }) => {
             {rating}
           </div>
         </div>
-
         {/* Button */}
         <Link
           to={`/review-details/${_id}`}
-          className="w-full mt-3 btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition"
+          className="w-full mt-auto btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition"
         >
           View Details
         </Link>
