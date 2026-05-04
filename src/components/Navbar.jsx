@@ -147,6 +147,7 @@ const Navbar = () => {
 
                   <li>
                     <Link to={"/my-reviews"}>My Reviews</Link>
+                    <Link to={"/my-favorites"}>My Favorites</Link>
                   </li>
                   <input
                   //    onChange={(e)=> handleTheme(e.target.checked)}

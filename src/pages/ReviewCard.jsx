@@ -1,7 +1,12 @@
 import { Star } from "lucide-react";
+import { useContext, useEffect } from "react";
+import { useState } from "react";
+import { MdFavorite } from "react-icons/md";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext/AuthContext";
+import { toast, Zoom } from "react-toastify";
 
-const ReviewCard = ({ review }) => {
+const ReviewCard = ({ review, favorites }) => {
   const {
     _id,
     food_image,
@@ -11,10 +16,87 @@ const ReviewCard = ({ review }) => {
     reviewer_name,
     rating,
   } = review;
+  const { user } = useContext(AuthContext);
 
+  const [favorite, setFavorite] = useState(false);
+
+  const handleFavorite = () => {
+    if (!user?.email) {
+      return toast.error("Please login first!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+      });
+    }
+
+    // Favorite card data
+    const favoriteReview = {
+      reviewId: _id,
+      user_email: user.email,
+      food_name,
+      food_image,
+      restaurant_name,
+      rating,
+    };
+
+    //   send favorite review to the Mongodb
+    fetch("http://localhost:3000/favorites", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(favoriteReview),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          setFavorite(true);
+          toast.success("Added to favorites ❤️!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Zoom,
+          });
+        } else if (data.message) {
+          toast.info("Already added to ❤️!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Zoom,
+          });
+        }
+      });
+  };
+
+  //   //   for favorite persist
+  useEffect(() => {
+    if (!favorites.length) {
+      return;
+    }
+    const exists = favorites.find((fav) => fav.reviewId === _id);
+
+    if (exists) {
+      setFavorite(true);
+    }
+  }, [favorites, _id]);
   return (
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group">
-      
       {/* Image */}
       <div className="overflow-hidden">
         <img
@@ -26,21 +108,24 @@ const ReviewCard = ({ review }) => {
 
       {/* Content */}
       <div className="p-4 space-y-2">
-        
         {/* Food Name */}
-        <h2 className="text-lg font-semibold text-gray-800">
-          {food_name}
-        </h2>
+        <h2 className="text-lg font-semibold text-gray-800">{food_name}</h2>
 
-        {/* Restaurant */}
-        <p className="text-sm text-gray-600">
-          Restaurant: {restaurant_name}
-        </p>
+        {/* Restaurant and Favorite*/}
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-gray-600">Restaurant: {restaurant_name}</p>
+          <button onClick={handleFavorite} className="cursor-pointer">
+            {" "}
+            {favorite ? (
+              <MdFavorite className="text-red-500 text-2xl" />
+            ) : (
+              <MdFavorite className="text-2xl hover:text-red-500" />
+            )}
+          </button>
+        </div>
 
         {/* Location */}
-        <p className="text-xs text-gray-400">
-          📍 {restaurant_location}
-        </p>
+        <p className="text-xs text-gray-400">📍 {restaurant_location}</p>
 
         {/* Reviewer + Rating */}
         <div className="flex items-center justify-between pt-2">
@@ -55,7 +140,10 @@ const ReviewCard = ({ review }) => {
         </div>
 
         {/* Button */}
-        <Link to={`/review-details/${_id}`} className="w-full mt-3 btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition">
+        <Link
+          to={`/review-details/${_id}`}
+          className="w-full mt-3 btn btn-neutral hover:btn-success hover:shadow-none hover:border-none hover:text-black text-sm py-2 rounded-lg transition"
+        >
           View Details
         </Link>
       </div>

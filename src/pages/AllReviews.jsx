@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ReviewCard from "./ReviewCard";
 import LoadingSpinner from "./LoadingSpinner";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../contexts/AuthContext/AuthContext";
 
 const AllReviews = () => {
+  const { user } = useContext(AuthContext);
+
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [favorites, setFavorites] = useState([]);
   // for load all reviews
   useEffect(() => {
     setLoading(true);
@@ -18,6 +21,14 @@ const AllReviews = () => {
       })
       .catch(() => setLoading(false));
   }, []);
+  // 🔥 Load favorites (IMPORTANT)
+  useEffect(() => {
+    if (!user?.email) return;
+
+    fetch(`http://localhost:3000/favorites?email=${user.email}`)
+      .then((res) => res.json())
+      .then((data) => setFavorites(data));
+  }, [user]);
 
   // for loading
   if (loading) {
@@ -36,7 +47,11 @@ const AllReviews = () => {
       {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {reviews.map((review) => (
-            <ReviewCard review={review} key={review._id}></ReviewCard>
+            <ReviewCard
+              review={review}
+              favorites={favorites}
+              key={review._id}
+            ></ReviewCard>
           ))}
         </div>
       }

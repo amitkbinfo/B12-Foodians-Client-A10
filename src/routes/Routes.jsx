@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import MyReview from "../pages/MyReview";
 import UpdateReview from "../pages/UpdateReview";
 import ErrorPage from "../pages/ErrorPage";
+import MyFavorites from "../pages/MyFavorites";
 
 export const router = createBrowserRouter([
   {
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
       {
         path: "/review-details/:id",
         loader: async ({params}) => fetch(`http://localhost:3000/reviews/${params.id}`),
-        element: <ReviewDetails></ReviewDetails>
+        element: <PrivateRoute><ReviewDetails></ReviewDetails></PrivateRoute>
       },
       {
         path: "/add-review",
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
         loader: async ({params}) => fetch(`http://localhost:3000/reviews/${params.id}`),
         element: <PrivateRoute><UpdateReview></UpdateReview></PrivateRoute>
       },
+      {
+        path: "/my-favorites",
+        element: <PrivateRoute><MyFavorites></MyFavorites></PrivateRoute>
+      }
     ],
   },
 ]);
