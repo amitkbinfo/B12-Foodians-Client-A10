@@ -43,16 +43,14 @@ const Banner = () => {
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index}>
-            {/* Slide Container */}
             <div className="relative rounded-2xl overflow-hidden">
-              {/* Image */}
               <img
                 src={slide.image}
                 alt=""
                 className="w-full h-70 md:h-110 lg:h-150 object-cover"
               />
 
-              {/* 🔥 Overlay */}
+              {/* Overlay */}
               <div className="absolute inset-0 bg-black/40 flex flex-col px-5 justify-center items-center text-white space-y-4 pt-20 md:pt-32">
                 <h2 className="text-xl md:text-3xl font-bold leading-tight">
                   {slide.title}

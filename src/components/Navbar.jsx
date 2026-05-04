@@ -11,17 +11,17 @@ import { IoLogOut } from "react-icons/io5";
 const Navbar = () => {
   const { user, loading, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
-//   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
-// // Themes apply
-//   useEffect(() => {
-//     const html = document.querySelector("html");
-//     html.setAttribute("data-theme", theme);
-//     localStorage.setItem("theme", theme);
-//   }, [theme]);
+  //   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  // // Themes apply
+  //   useEffect(() => {
+  //     const html = document.querySelector("html");
+  //     html.setAttribute("data-theme", theme);
+  //     localStorage.setItem("theme", theme);
+  //   }, [theme]);
 
-//   const handleTheme = (checked) => {
-//     setTheme(checked ? "dark" : "light");
-//   };
+  //   const handleTheme = (checked) => {
+  //     setTheme(checked ? "dark" : "light");
+  //   };
 
   const handleLogout = () => {
     signOutUser()
@@ -110,7 +110,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex gap-5">{navLinks}</div>
-        {/* Login/Logout */}
+        {/* User or Logout */}
         {loading ? (
           <div className="navbar-end gap-2">
             <ClockLoader size={36} />

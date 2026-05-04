@@ -36,7 +36,7 @@ const ReviewCard = ({ review, favorites }) => {
     };
 
     //   send favorite review to the Mongodb
-    fetch("http://localhost:3000/favorites", {
+    fetch("https://foodians-server.vercel.app/favorites", {
       method: "POST",
       headers: {
         "content-type": "application/json",

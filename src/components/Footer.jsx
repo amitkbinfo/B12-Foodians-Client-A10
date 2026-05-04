@@ -90,7 +90,7 @@ const Footer = () => {
         </nav>
       </footer>
       <hr className="w-full text-gray-500 my-10" />
-      <small className="flex justify-center w-full text-xs md:text-sm">
+      <small className="flex justify-center w-full text-xs">
         <Link to="/" className="text-xm text-center">
           <span className="text-[#FB4231]">F</span>
           <span className="text-[#dfce15]">o</span>

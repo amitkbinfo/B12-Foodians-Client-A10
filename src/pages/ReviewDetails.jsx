@@ -35,7 +35,7 @@ const ReviewDetails = () => {
     }
 
     // send data to the favorite DB
-    fetch("http://localhost:3000/favorites", {
+    fetch("https://foodians-server.vercel.app/favorites", {
       method: "POST",
       headers: {
         "content-type": "application/json",

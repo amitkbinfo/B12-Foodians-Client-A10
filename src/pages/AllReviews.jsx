@@ -13,7 +13,7 @@ const AllReviews = () => {
   // for load all reviews
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/reviews")
+    fetch("https://foodians-server.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -25,7 +25,7 @@ const AllReviews = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/favorites?email=${user.email}`)
+    fetch(`https://foodians-server.vercel.app/favorites?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setFavorites(data));
   }, [user]);
@@ -40,7 +40,7 @@ const AllReviews = () => {
     e.preventDefault();
     const searchByName = e.target.search.value;
     setLoading(true);
-    fetch(`http://localhost:3000/search?search=${searchByName}`)
+    fetch(`https://foodians-server.vercel.app/search?search=${searchByName}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

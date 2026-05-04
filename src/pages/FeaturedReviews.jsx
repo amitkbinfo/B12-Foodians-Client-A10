@@ -10,7 +10,7 @@ const FeaturedReviews = ({ featuredReviews }) => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:3000/favorites?email=${user.email}`)
+    fetch(`https://foodians-server.vercel.app/favorites?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setFavorites(data));
   }, [user]);
@@ -26,10 +26,10 @@ const FeaturedReviews = ({ featuredReviews }) => {
           ></ReviewCard>
         ))}
       </div>
-      <div className="flex justify-center mt-5">
+      <div className="flex justify-center mt-10">
         <Link
           to={"/all-reviews"}
-          className="btn btn-success hover:btn-neutral hover:shadow-none hover:border-none shadow-none text-black hover:text-white"
+          className="btn px-10 btn-success hover:btn-neutral hover:shadow-none hover:border-none shadow-none text-black hover:text-white"
         >
           Show All
         </Link>

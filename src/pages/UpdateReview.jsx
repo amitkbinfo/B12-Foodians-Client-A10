@@ -20,7 +20,7 @@ const UpdateReview = () => {
       review: form.review.value,
     };
 
-    fetch(`http://localhost:3000/reviews/${review._id}`, {
+    fetch(`https://foodians-server.vercel.app/reviews/${review._id}`, {
       method: "PATCH",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updatedData),
@@ -48,15 +48,12 @@ const UpdateReview = () => {
       <Helmet>
         <title>{review.food_name}</title>
       </Helmet>
-      {/* Card */}
-      <div className="bg-green-50 shadow-lg rounded-2xl p-6 md:p-8">
-        {/* Title */}
+      <div className="bg-green-50 shadow-lg rounded-2xl md:p-8">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-6">
           Update Your Review ✏️
         </h2>
 
         <form onSubmit={handleUpdate} className="space-y-5 px-10">
-          {/* Grid Fields */}
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label className="label">Food Name</label>
@@ -114,13 +111,13 @@ const UpdateReview = () => {
             />
           </div>
 
-          {/* Preview Image (nice UX touch) */}
+          {/* Preview Image */}
           {review.food_image && (
             <div className="mt-2">
               <img
                 src={review.food_image}
                 alt="preview"
-                className="w-full h-52 object-cover rounded-xl"
+                className="w-full h-72 object-cover rounded-xl"
               />
             </div>
           )}

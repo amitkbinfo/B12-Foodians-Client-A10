@@ -25,7 +25,7 @@ const AddReview = () => {
     };
 
     // post for sending data to the MongoDB
-    fetch("http://localhost:3000/reviews", {
+    fetch("https://foodians-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -119,7 +119,7 @@ const AddReview = () => {
           required
         ></textarea>
 
-        {/* User Info (readonly) */}
+        {/* User Info */}
         <div className="bg-white p-3 rounded-lg border border-success text-sm">
           <p>
             <span className="font-semibold">Name:</span> {user?.displayName}
@@ -129,7 +129,7 @@ const AddReview = () => {
           </p>
         </div>
 
-        {/* Submit Button */}
+        {/* Button */}
         <button
           type="submit"
           className="btn btn-neutral w-full hover:btn-success hover:text-black hover:shadow-none hover:border-none"

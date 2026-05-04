@@ -17,7 +17,7 @@ const MyFavorites = () => {
 
     setLoading(true);
 
-    fetch(`http://localhost:3000/favorites?email=${user.email}`)
+    fetch(`https://foodians-server.vercel.app/favorites?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setFavorites(data);
@@ -28,7 +28,7 @@ const MyFavorites = () => {
 
   // Remove favorite
   const handleRemove = (id) => {
-    fetch(`http://localhost:3000/favorites/${id}`, {
+    fetch(`https://foodians-server.vercel.app/favorites/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -53,7 +53,7 @@ const MyFavorites = () => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-5 py-10">
+    <div className="max-w-7xl mx-auto px-5 py-10">
       <Helmet>
         <title>My Favorites</title>
       </Helmet>

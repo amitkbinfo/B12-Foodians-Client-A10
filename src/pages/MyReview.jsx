@@ -15,7 +15,7 @@ const MyReviews = () => {
       return;
     }
     setLoading(true);
-    fetch(`http://localhost:3000/my-reviews?email=${user?.email}`)
+    fetch(`https://foodians-server.vercel.app/my-reviews?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -36,7 +36,7 @@ const MyReviews = () => {
       confirmButtonText: "Confirm!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/reviews/${id}`, {
+        fetch(`https://foodians-server.vercel.app/reviews/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

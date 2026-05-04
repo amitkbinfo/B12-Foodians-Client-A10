@@ -10,7 +10,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/featured-reviews")
+    fetch("https://foodians-server.vercel.app/featured-reviews")
       .then((res) => res.json())
       .then((data) => {
         setFeaturedReviews(data);
