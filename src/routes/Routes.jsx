@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/review-details/:id",
-        loader: async ({params}) => fetch(`http://localhost:3000/reviews/${params.id}`),
+        loader: async ({params}) => fetch(`https://foodians-server.vercel.app/reviews/${params.id}`),
         element: <PrivateRoute><ReviewDetails></ReviewDetails></PrivateRoute>
       },
       {
@@ -49,7 +49,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/update-review/:id",
-        loader: async ({params}) => fetch(`http://localhost:3000/reviews/${params.id}`),
+        loader: async ({params}) => fetch(`https://foodians-server.vercel.app/reviews/${params.id}`),
         element: <PrivateRoute><UpdateReview></UpdateReview></PrivateRoute>
       },
       {

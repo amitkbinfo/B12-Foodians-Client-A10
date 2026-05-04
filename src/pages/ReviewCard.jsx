@@ -22,7 +22,17 @@ const ReviewCard = ({ review, favorites }) => {
 
   const handleFavorite = () => {
     if (!user?.email) {
-      return;
+      return toast.info("Please login first!", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Zoom,
+          });
     }
 
     // Favorite card data
